@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import validUrl from "valid-url"
 
 import { createShortenUrlRequest } from '../../actions'
+import {getCurrentOrigin} from '../../utils'
 
 const shortenNamePattern = /(?:[A-Za-z0-9]{6,}|)/
 
@@ -11,7 +12,6 @@ const HomePage = ({ shortenUrl, createShortenUrlRequest }) => {
   const { register, handleSubmit, formState: { errors }, } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data)
     createShortenUrlRequest(data)
   }
 
@@ -31,7 +31,7 @@ const HomePage = ({ shortenUrl, createShortenUrlRequest }) => {
               {errors.originalUrl && <div>Input URL is invalid</div>}
             </div>
             <div className='shorten-name-block'>
-              <label>domain.at/</label>
+              <label>{getCurrentOrigin()}/</label>
               <input
                 type='text'
                 className='shorten-name-input'

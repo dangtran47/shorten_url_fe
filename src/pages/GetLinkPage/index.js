@@ -12,7 +12,7 @@ const GetLinkPage = ({ originalUrl, fetchOriginalUrl }) => {
   useEffect(() => {
     const shortenUrl = `${getCurrentOrigin()}/${shortenName}`
     fetchOriginalUrl({ shortenUrl })
-  }, [])
+  }, [shortenName, fetchOriginalUrl])
 
   useEffect(() => {
     if (originalUrl) window.location = originalUrl;

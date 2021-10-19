@@ -2,7 +2,7 @@ import { map } from 'rxjs'
 import { ajax } from 'rxjs/ajax'
 import get from 'lodash/get'
 
-const BASE_URL = 'http://localhost:8000'
+import { BASE_URL } from '../constants'
 
 const createShortenUrlSelector = response => ({
   shortenUrl: get(response, 'data.shorten_url'),
