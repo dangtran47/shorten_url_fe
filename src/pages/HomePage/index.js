@@ -4,9 +4,9 @@ import { connect } from "react-redux"
 import validUrl from "valid-url"
 
 import { createShortenUrlRequest } from '../../actions'
-import {getCurrentOrigin} from '../../utils'
+import { getCurrentOrigin } from '../../utils'
 
-const shortenNamePattern = /(?:[A-Za-z0-9]{6,}|)/
+const shortenNamePattern =/^([A-Za-z0-9]{6,})?$/ 
 
 const HomePage = ({ shortenUrl, createShortenUrlRequest }) => {
   const { register, handleSubmit, formState: { errors }, } = useForm()
