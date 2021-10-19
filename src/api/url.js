@@ -4,11 +4,15 @@ import get from 'lodash/get'
 
 const BASE_URL = 'http://localhost:8000'
 
-const getShortenUrlSelector = response => ({
+const createShortenUrlSelector = response => ({
   shortenUrl: get(response, 'data.shorten_url'),
 })
 
-const getShortenUrl = ({ originalUrl, shortenName = '' }) => {
+const featchOriginalUrlSelector = response => ({
+  originalUrl: get(response, 'data.original_url')
+})
+
+const createShortenUrl = ({ originalUrl, shortenName = '' }) => {
   return ajax({
     url: `${BASE_URL}/map_urls`,
     method: 'POST',
@@ -19,10 +23,21 @@ const getShortenUrl = ({ originalUrl, shortenName = '' }) => {
     crossDomain: true,
     responseType: 'json',
   }).pipe(
-    map(response => getShortenUrlSelector(response.response)),
+    map(response => createShortenUrlSelector(response.response)),
+  )
+}
+
+const fetchOriginalUrl = ({ shortenUrl }) => {
+  return ajax({
+    url: `${BASE_URL}/map_urls/${encodeURIComponent(shortenUrl)}`,
+    method: 'GET',
+    crossDomain: true,
+  }).pipe(
+    map(response => featchOriginalUrlSelector(response.response)),
   )
 }
 
 export default {
-  getShortenUrl,
+  createShortenUrl,
+  fetchOriginalUrl,
 }

@@ -3,16 +3,16 @@ import { useForm } from "react-hook-form"
 import { connect } from "react-redux"
 import validUrl from "valid-url"
 
-import { getShortenUrl } from '../../actions'
+import { createShortenUrlRequest } from '../../actions'
 
 const shortenNamePattern = /(?:[A-Za-z0-9]{6,}|)/
 
-const HomePage = ({ shortenUrl, getShortenUrl }) => {
+const HomePage = ({ shortenUrl, createShortenUrlRequest }) => {
   const { register, handleSubmit, formState: { errors }, } = useForm()
 
   const onSubmit = (data) => {
     console.log(data)
-    getShortenUrl(data)
+    createShortenUrlRequest(data)
   }
 
   return (
@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getShortenUrl: payload => dispatch(getShortenUrl(payload)),
+  createShortenUrlRequest: payload => dispatch(createShortenUrlRequest(payload)),
 })
 
 export default connect(
