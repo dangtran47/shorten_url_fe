@@ -25,6 +25,7 @@ const RegisterPage = ({ registering, registerUser }) => {
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = (data) => {
+    console.log("submit");
     registerUser(data);
   };
 

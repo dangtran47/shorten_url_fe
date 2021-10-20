@@ -10,7 +10,9 @@ const initialState = {
 };
 
 const registrationReducer = (state = initialState, action) => {
+  console.log("REGISTRATION ERROR");
   console.log(action);
+
   switch (action.type) {
     case REGISTER_USER_REQUEST:
       return { registering: true };

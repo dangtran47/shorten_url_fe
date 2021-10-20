@@ -10,6 +10,10 @@ export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_FAILED = "REGISTER_USER_FAILED";
 
+export const ALERT_SUCCESS = "ALERT_SUCCESS";
+export const ALERT_ERROR = "ALERT_ERROR";
+export const ALERT_CLEAR = "ALERT_CLEAR";
+
 export const createShortenUrlRequest = (urlInfo) => ({
   type: CREATE_SHORTEN_URL_REQUEST,
   payload: urlInfo,
@@ -53,4 +57,18 @@ export const registerUserSuccess = (payload) => ({
 export const registerUserFailed = (message) => ({
   type: REGISTER_USER_FAILED,
   payload: message,
+});
+
+export const alertSuccess = (payload) => ({
+  type: ALERT_SUCCESS,
+  payload,
+});
+
+export const alertError = (payload) => ({
+  type: ALERT_ERROR,
+  payload,
+});
+
+export const alertClear = () => ({
+  type: ALERT_CLEAR,
 });

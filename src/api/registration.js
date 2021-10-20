@@ -11,6 +11,7 @@ const registerUserSelector = (response) => {
 };
 
 const registerUser = ({ email, password }) => {
+  console.log("run");
   return ajax({
     url: `${BASE_URL}/api/v1/users/registration`,
     method: "POST",

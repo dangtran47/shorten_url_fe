@@ -1,12 +1,26 @@
-import { CREATE_SHORTEN_URL_SUCCESS, FETCH_ORIGINAL_URL_SUCCESS } from '../actions'
+import {
+  CREATE_SHORTEN_URL_SUCCESS,
+  FETCH_ORIGINAL_URL_SUCCESS,
+  CREATE_SHORTEN_URL_FAILED,
+  FETCH_ORIGINAL_URL_FAILED,
+} from "../actions";
 
-export default (state = {}, action) => {
+const urlReducer = (state = {}, action) => {
+  console.log("URL REDUCER");
+  console.log(action);
+
   switch (action.type) {
     case CREATE_SHORTEN_URL_SUCCESS:
-      return action.payload
+      return action.payload;
+    case CREATE_SHORTEN_URL_FAILED:
+      return action.payload;
     case FETCH_ORIGINAL_URL_SUCCESS:
-      return action.payload
+      return action.payload;
+    case FETCH_ORIGINAL_URL_FAILED:
+      return action.payload;
     default:
-      return state
+      return state;
   }
-}
+};
+
+export default urlReducer;
