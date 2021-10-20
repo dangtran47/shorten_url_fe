@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
 
-import url from './url'
-export default combineReducers({ url })
+import url from "./url";
+import registration from "./registration";
+
+export default combineReducers({ url, registration });
