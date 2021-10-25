@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect } from "react";
@@ -9,7 +9,9 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import GetLinkPage from "./pages/GetLinkPage";
+import LoginPage from "./pages/LoginPage";
 import { alertClear } from "./actions";
+import { history } from "./helper/history";
 
 function App({ message, error, alertClear }) {
   console.log({ error });
@@ -30,7 +32,7 @@ function App({ message, error, alertClear }) {
   }, [alertClear]);
 
   return (
-    <Router>
+    <Router history={history} forceRefresh={true}>
       <Switch>
         <Route exact path="/">
           <HomePage />
@@ -38,6 +40,10 @@ function App({ message, error, alertClear }) {
 
         <Route exact path="/register">
           <RegisterPage />
+        </Route>
+
+        <Route exact path="/login">
+          <LoginPage />
         </Route>
 
         <Route path="/:shortenName">

@@ -1,17 +1,10 @@
 import { combineEpics, ofType } from "redux-observable";
 import {
   mergeMap,
-  switchMap,
   catchError,
   of,
-  pipe,
   asyncScheduler,
-  scheduled,
-  combineLatest,
   concat,
-  take,
-  takeLast,
-  mergeAll,
   merge,
 } from "rxjs";
 import get from "lodash/get";
