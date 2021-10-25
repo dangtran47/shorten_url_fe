@@ -1,9 +1,7 @@
-import { combineEpics } from 'redux-observable'
+import { combineEpics } from "redux-observable";
 
-import url from './url'
-import registration from './registration'
+import url from "./url";
+import registration from "./registration";
+import authentication from "./authentication";
 
-export default combineEpics(
-  url,
-  registration
-)
+export default combineEpics(url, registration, authentication);

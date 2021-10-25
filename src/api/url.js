@@ -1,16 +1,17 @@
-import { map } from 'rxjs'
-import { ajax } from 'rxjs/ajax'
-import get from 'lodash/get'
+import { map } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import get from 'lodash/get';
 
-import { BASE_URL } from '../constants'
+import { BASE_URL } from '../constants';
+import { authHeader } from '../helper/auth-header';
 
-const createShortenUrlSelector = response => ({
+const createShortenUrlSelector = (response) => ({
   shortenUrl: get(response, 'data.shorten_url'),
-})
+});
 
-const featchOriginalUrlSelector = response => ({
-  originalUrl: get(response, 'data.original_url')
-})
+const featchOriginalUrlSelector = (response) => ({
+  originalUrl: get(response, 'data.original_url'),
+});
 
 const createShortenUrl = ({ originalUrl, shortenName = '' }) => {
   return ajax({
@@ -20,24 +21,21 @@ const createShortenUrl = ({ originalUrl, shortenName = '' }) => {
       original_url: originalUrl,
       shorten_name: shortenName,
     },
+    headers: authHeader(),
     crossDomain: true,
     responseType: 'json',
-  }).pipe(
-    map(response => createShortenUrlSelector(response.response)),
-  )
-}
+  }).pipe(map((response) => createShortenUrlSelector(response.response)));
+};
 
 const fetchOriginalUrl = ({ shortenUrl }) => {
   return ajax({
     url: `${BASE_URL}/map_urls/${encodeURIComponent(shortenUrl)}`,
     method: 'GET',
     crossDomain: true,
-  }).pipe(
-    map(response => featchOriginalUrlSelector(response.response)),
-  )
-}
+  }).pipe(map((response) => featchOriginalUrlSelector(response.response)));
+};
 
 export default {
   createShortenUrl,
   fetchOriginalUrl,
-}
+};

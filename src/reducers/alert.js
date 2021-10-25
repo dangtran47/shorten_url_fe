@@ -1,9 +1,6 @@
 import { ALERT_SUCCESS, ALERT_ERROR, ALERT_CLEAR } from "../actions";
 
 const alertReducer = (state = {}, action) => {
-  console.log("ALERT REDUCER");
-  console.log(action);
-
   switch (action.type) {
     case ALERT_SUCCESS:
       return action.payload;

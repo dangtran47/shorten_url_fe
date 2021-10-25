@@ -1,5 +1,86 @@
-const LoginPage = () => {
-  return <div>Login</div>
-}
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { connect } from "react-redux";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import get from "lodash/get";
 
-export default LoginPage
+import { signInRequest } from "../../actions";
+import { history } from "../../helper/history";
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required("Email is required").email("Invalid email."),
+  password: Yup.string()
+    .required("Name is required")
+    .length(8, "Password must be at least 8 characters."),
+});
+
+const LoginPage = ({ success, signIn, loggingIn }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validationSchema) });
+
+  const onSubmit = (data) => {
+    signIn(data);
+  };
+
+  useEffect(() => {
+    if (success) history.push("/");
+  }, [success]);
+
+  return (
+    <div className="register-page">
+      <div className="register-form-wrapper">
+        <form>
+          <div className="form-field">
+            <label className="field-label">email</label>
+            <input
+              type="text"
+              className="field-input"
+              placeholder="your email"
+              {...register("email")}
+            />
+            {errors.email && (
+              <div className="field-error">Email is invalid.</div>
+            )}
+          </div>
+
+          <div className="form-field">
+            <label className="field-label">password</label>
+            <input
+              type="password"
+              className="field-input"
+              placeholder="your password"
+              {...register("password")}
+            />
+            {errors.password && (
+              <div className="field-error">Password is invalid.</div>
+            )}
+          </div>
+
+          <button
+            type="button"
+            disabled={loggingIn}
+            className="register-button"
+            onClick={handleSubmit(onSubmit)}
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  loggingIn: get(state, "authentication.loggingIn"),
+  success: get(state, "authentication.success"),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (payload) => dispatch(signInRequest(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

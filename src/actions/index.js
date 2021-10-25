@@ -10,6 +10,10 @@ export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_FAILED = "REGISTER_USER_FAILED";
 
+export const SIGN_IN_REQUEST = "SIGN_IN_REQUEST";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_FAILED = "SIGN_IN_FAILED";
+
 export const ALERT_SUCCESS = "ALERT_SUCCESS";
 export const ALERT_ERROR = "ALERT_ERROR";
 export const ALERT_CLEAR = "ALERT_CLEAR";
@@ -56,6 +60,21 @@ export const registerUserSuccess = (payload) => ({
 
 export const registerUserFailed = (message) => ({
   type: REGISTER_USER_FAILED,
+  payload: message,
+});
+
+export const signInRequest = (userInfo) => ({
+  type: SIGN_IN_REQUEST,
+  payload: userInfo,
+});
+
+export const signInSuccess = (payload) => ({
+  type: SIGN_IN_SUCCESS,
+  payload,
+});
+
+export const signInFailed = (message) => ({
+  type: SIGN_IN_FAILED,
   payload: message,
 });
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { connect } from "react-redux";
 import * as Yup from "yup";
@@ -5,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import get from "lodash/get";
 
 import { registerUserRequest } from "../../actions";
+import { history } from "../../helper/history";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("Email is required").email("Invalid email."),
@@ -17,7 +19,7 @@ const validationSchema = Yup.object().shape({
   ),
 });
 
-const RegisterPage = ({ registering, registerUser }) => {
+const RegisterPage = ({ success, registering, registerUser }) => {
   const {
     register,
     handleSubmit,
@@ -28,6 +30,10 @@ const RegisterPage = ({ registering, registerUser }) => {
     console.log("submit");
     registerUser(data);
   };
+
+  useEffect(() => {
+    if (success) history.push("/login");
+  }, [success]);
 
   return (
     <div className="register-page">
@@ -88,6 +94,7 @@ const RegisterPage = ({ registering, registerUser }) => {
 
 const mapStateToProps = (state) => ({
   registering: get(state, "registration.registering"),
+  success: get(state, "registration.success"),
 });
 
 const mapDispatchToProps = (dispatch) => ({

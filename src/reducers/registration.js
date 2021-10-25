@@ -1,4 +1,3 @@
-import { history } from '../helper/history'
 import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_REQUEST,
@@ -11,15 +10,11 @@ const initialState = {
 };
 
 const registrationReducer = (state = initialState, action) => {
-  console.log("REGISTRATION ERROR");
-  console.log(action);
-
   switch (action.type) {
     case REGISTER_USER_REQUEST:
       return { registering: true };
     case REGISTER_USER_SUCCESS:
-      history.push('/login')
-      return { registering: false };
+      return { registering: false, success: true };
     case REGISTER_USER_FAILED:
       return { registering: false };
     default:
