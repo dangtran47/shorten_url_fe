@@ -1,0 +1,55 @@
+.login-page {
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-page .container {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.login-page .login-form-wrapper {
+  width: 500px;
+  height: 250px;
+  padding: 20px 30px;
+}
+
+.login-page .login-form-wrapper form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login-page .login-form-wrapper form .title {
+  font-size: 30px;
+}
+
+.login-page .login-form-wrapper form label {
+  text-transform: capitalize;
+}
+
+.login-page .login-form-wrapper form input {
+  width: 100%;
+  height: 30px;
+  padding: 2px;
+}
+
+.login-page .login-form-wrapper form .field-error {
+  color: red;
+  font-size: 14px;
+}
+
+.login-page .login-form-wrapper form button {
+  width: 100px;
+  height: 30px;
+  align-self: center;
+  cursor: pointer;
+}
