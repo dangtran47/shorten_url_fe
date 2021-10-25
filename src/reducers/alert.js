@@ -1,4 +1,4 @@
-import { ALERT_SUCCESS, ALERT_ERROR, ALERT_CLEAR } from "../actions";
+import { ALERT_SUCCESS, ALERT_ERROR, ALERT_CLEAR } from '../actions';
 
 const alertReducer = (state = {}, action) => {
   switch (action.type) {

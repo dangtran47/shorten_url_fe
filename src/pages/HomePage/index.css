@@ -1,0 +1,71 @@
+.homepage {
+  min-height: calc(100vh - 40px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.homepage .container {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0px 20px 0px;
+}
+
+.homepage .shorten-section {
+  width: 500px;
+  padding: 20px 30px;
+}
+
+.homepage .shorten-section form {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.homepage .shorten-section .original-url-block .original-url-input {
+  width: 100%;
+  height: 30px;
+}
+
+.homepage .shorten-section .shorten-name-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage .shorten-section .shorten-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.homepage .shorten-section .shorten-name-block .origin {
+  width: 30%;
+  line-height: 30px;
+}
+
+.homepage .shorten-section .shorten-name-block .shorten-name-input {
+  height: 30px;
+  width: 64%;
+}
+
+.homepage .shorten-section .shorten-button {
+  width: 150px;
+  height: 30px;
+  align-self: center;
+}
+
+.homepage .shorten-section .shorten-url {
+  background-color: aquamarine;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.homepage .error {
+  color: red;
+  width: 100%;
+}

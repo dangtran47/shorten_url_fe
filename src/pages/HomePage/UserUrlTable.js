@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { useTable } from 'react-table';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
 const UserUrlTable = ({ userUrls }) => {
   const columns = useMemo(
@@ -7,48 +8,23 @@ const UserUrlTable = ({ userUrls }) => {
       {
         Header: 'Original URL',
         accessor: 'originalUrl',
+        minWidth: 400,
       },
       {
         Header: 'Short URL',
         accessor: 'shortenUrl',
+        minWidth: 400,
       },
       {
         Header: 'Created At',
         accessor: 'createdAt',
+        minWidth: 220,
       },
     ],
     []
   );
 
-  const tableInstance = useTable({ columns, data: userUrls });
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
-
-  return (
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
+  return <ReactTable data={userUrls} columns={columns} defaultPageSize={10} />;
 };
 
 export default UserUrlTable;
