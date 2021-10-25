@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import validUrl from 'valid-url';
 
 import { createShortenUrlRequest, fetchAllUrlsRequest } from '../../actions';
 import { getCurrentOrigin } from '../../utils';
+
+import UserUrlTable from './UserUrlTable';
 
 const shortenNamePattern = /^([A-Za-z0-9]{6,})?$/;
 
@@ -69,13 +71,7 @@ const HomePage = ({
         </form>
         {shortenUrl && <div>{shortenUrl}</div>}
       </div>
-      {userUrls && (
-        <div className='user-urls-section'>
-          {userUrls.map((url) => (
-            <div>{url.shortenUrl}</div>
-          ))}
-        </div>
-      )}
+      {!isEmpty(userUrls) && <UserUrlTable userUrls={userUrls} />}
     </div>
   );
 };
