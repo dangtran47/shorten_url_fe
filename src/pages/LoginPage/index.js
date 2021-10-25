@@ -7,6 +7,7 @@ import get from "lodash/get";
 
 import { signInRequest } from "../../actions";
 import { history } from "../../helper/history";
+import { Redirect } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required("Email is required").email("Invalid email."),
@@ -15,7 +16,7 @@ const validationSchema = Yup.object().shape({
     .length(8, "Password must be at least 8 characters."),
 });
 
-const LoginPage = ({ success, signIn, loggingIn }) => {
+const LoginPage = ({ success, signIn, loggingIn, loggedIn }) => {
   const {
     register,
     handleSubmit,
@@ -29,6 +30,9 @@ const LoginPage = ({ success, signIn, loggingIn }) => {
   useEffect(() => {
     if (success) history.push("/");
   }, [success]);
+
+  if (loggedIn)
+    return <Redirect to='/' />
 
   return (
     <div className="register-page">
@@ -76,6 +80,7 @@ const LoginPage = ({ success, signIn, loggingIn }) => {
 
 const mapStateToProps = (state) => ({
   loggingIn: get(state, "authentication.loggingIn"),
+  loggedIn: get(state, "authentication.loggedIn"),
   success: get(state, "authentication.success"),
 });
 

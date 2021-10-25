@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import get from 'lodash/get';
@@ -19,7 +20,7 @@ const validationSchema = Yup.object().shape({
   ),
 });
 
-const RegisterPage = ({ success, registering, registerUser }) => {
+const RegisterPage = ({ success, registering, registerUser, loggedIn }) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +34,9 @@ const RegisterPage = ({ success, registering, registerUser }) => {
   useEffect(() => {
     if (success) history.push('/login');
   }, [success]);
+
+  if (loggedIn)
+    return <Redirect to='/' />
 
   return (
     <div className='register-page'>
@@ -94,6 +98,7 @@ const RegisterPage = ({ success, registering, registerUser }) => {
 const mapStateToProps = (state) => ({
   registering: get(state, 'registration.registering'),
   success: get(state, 'registration.success'),
+  loggedIn: get(state, 'authentication.loggedIn'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
