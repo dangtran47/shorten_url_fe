@@ -14,7 +14,6 @@ import { alertClear } from "./actions";
 import { history } from "./helper/history";
 
 function App({ message, error, alertClear }) {
-  console.log({ error });
   useEffect(() => {
     if (message) {
       toast.success(message);

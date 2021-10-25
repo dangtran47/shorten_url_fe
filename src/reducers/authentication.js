@@ -1,24 +1,21 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_FAILED } from "../actions";
+import { SIGN_IN_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_FAILED } from '../actions';
 
-let token = JSON.parse(localStorage.getItem("token"));
+let token = JSON.parse(localStorage.getItem('token'));
 
 const initialState = {
   loggingIn: false,
-  loggedIn: false,
+  loggedIn: !!token,
   token: token,
   success: false,
 };
 
 const authenticationReducer = (state = initialState, action) => {
-  console.log("SIGN IN REDUCER");
-  console.log(action);
-
   switch (action.type) {
     case SIGN_IN_REQUEST:
       return { loggingIn: true };
     case SIGN_IN_SUCCESS:
       const { token } = action.payload;
-      localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem('token', JSON.stringify(token));
 
       return {
         loggedIn: true,

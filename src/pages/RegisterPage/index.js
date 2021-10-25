@@ -1,21 +1,21 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import get from "lodash/get";
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { connect } from 'react-redux';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import get from 'lodash/get';
 
-import { registerUserRequest } from "../../actions";
-import { history } from "../../helper/history";
+import { registerUserRequest } from '../../actions';
+import { history } from '../../helper/history';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().required("Email is required").email("Invalid email."),
+  email: Yup.string().required('Email is required').email('Invalid email.'),
   password: Yup.string()
-    .required("Name is required")
-    .length(8, "Password must be at least 8 characters."),
+    .required('Name is required')
+    .length(8, 'Password must be at least 8 characters.'),
   confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Password do not match"
+    [Yup.ref('password'), null],
+    'Password do not match'
   ),
 });
 
@@ -27,61 +27,60 @@ const RegisterPage = ({ success, registering, registerUser }) => {
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = (data) => {
-    console.log("submit");
     registerUser(data);
   };
 
   useEffect(() => {
-    if (success) history.push("/login");
+    if (success) history.push('/login');
   }, [success]);
 
   return (
-    <div className="register-page">
-      <div className="register-form-wrapper">
+    <div className='register-page'>
+      <div className='register-form-wrapper'>
         <form>
-          <div className="form-field">
-            <label className="field-label">email</label>
+          <div className='form-field'>
+            <label className='field-label'>email</label>
             <input
-              type="text"
-              className="field-input"
-              placeholder="your email"
-              {...register("email")}
+              type='text'
+              className='field-input'
+              placeholder='your email'
+              {...register('email')}
             />
             {errors.email && (
-              <div className="field-error">Email is invalid.</div>
+              <div className='field-error'>Email is invalid.</div>
             )}
           </div>
 
-          <div className="form-field">
-            <label className="field-label">password</label>
+          <div className='form-field'>
+            <label className='field-label'>password</label>
             <input
-              type="password"
-              className="field-input"
-              placeholder="your password"
-              {...register("password")}
+              type='password'
+              className='field-input'
+              placeholder='your password'
+              {...register('password')}
             />
             {errors.password && (
-              <div className="field-error">Password is invalid.</div>
+              <div className='field-error'>Password is invalid.</div>
             )}
           </div>
 
-          <div className="form-field">
-            <label className="field-label">confirm password</label>
+          <div className='form-field'>
+            <label className='field-label'>confirm password</label>
             <input
-              type="password"
-              className="field-input"
-              placeholder="your confirm password"
-              {...register("confirmPassword")}
+              type='password'
+              className='field-input'
+              placeholder='your confirm password'
+              {...register('confirmPassword')}
             />
             {errors.confirmPassword && (
-              <div className="field-error">Confirm password invalid.</div>
+              <div className='field-error'>Confirm password invalid.</div>
             )}
           </div>
 
           <button
-            type="button"
+            type='button'
             disabled={registering}
-            className="register-button"
+            className='register-button'
             onClick={handleSubmit(onSubmit)}
           >
             Register
@@ -93,8 +92,8 @@ const RegisterPage = ({ success, registering, registerUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  registering: get(state, "registration.registering"),
-  success: get(state, "registration.success"),
+  registering: get(state, 'registration.registering'),
+  success: get(state, 'registration.success'),
 });
 
 const mapDispatchToProps = (dispatch) => ({
