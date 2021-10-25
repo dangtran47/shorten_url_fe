@@ -1,18 +1,18 @@
-import "react-toastify/dist/ReactToastify.css";
-import { Router, Switch, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import { useEffect } from "react";
-import get from "lodash/get";
+import 'react-toastify/dist/ReactToastify.css';
+import { Router, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import { useEffect } from 'react';
+import get from 'lodash/get';
 
-import "./App.css";
-import HomePage from "./pages/HomePage";
-import RegisterPage from "./pages/RegisterPage";
-import GetLinkPage from "./pages/GetLinkPage";
-import LoginPage from "./pages/LoginPage";
-import { alertClear } from "./actions";
-import { history } from "./helper/history";
-import Header from './components/Header'
+import './App.css';
+import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
+import GetLinkPage from './pages/GetLinkPage';
+import LoginPage from './pages/LoginPage';
+import { alertClear } from './actions';
+import { history } from './helper/history';
+import Header from './components/Header';
 
 function App({ message, error, alertClear }) {
   useEffect(() => {
@@ -36,31 +36,31 @@ function App({ message, error, alertClear }) {
       <Header />
 
       <Switch>
-        <Route exact path="/">
+        <Route exact path='/'>
           <HomePage />
         </Route>
 
-        <Route exact path="/register">
+        <Route exact path='/register'>
           <RegisterPage />
         </Route>
 
-        <Route exact path="/login">
+        <Route exact path='/login'>
           <LoginPage />
         </Route>
 
-        <Route path="/:shortenName">
+        <Route path='/:shortenName'>
           <GetLinkPage />
         </Route>
       </Switch>
 
-      <ToastContainer />
+      <ToastContainer autoClose={2500} />
     </Router>
   );
 }
 
 const mapStateToProps = (state) => ({
-  message: get(state, "alert.message", ""),
-  error: get(state, "alert.error", ""),
+  message: get(state, 'alert.message', ''),
+  error: get(state, 'alert.error', ''),
 });
 
 const mapDispatchToProps = (dispatch) => ({
