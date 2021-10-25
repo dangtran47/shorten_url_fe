@@ -18,6 +18,8 @@ export const SIGN_IN_REQUEST = 'SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILED = 'SIGN_IN_FAILED';
 
+export const SIGN_OUT = 'SIGN_OUT';
+
 export const ALERT_SUCCESS = 'ALERT_SUCCESS';
 export const ALERT_ERROR = 'ALERT_ERROR';
 export const ALERT_CLEAR = 'ALERT_CLEAR';
@@ -95,6 +97,10 @@ export const signInFailed = (message) => ({
   type: SIGN_IN_FAILED,
   payload: message,
 });
+
+export const signOut = () => ({
+  type: SIGN_OUT,
+})
 
 export const alertSuccess = (payload) => ({
   type: ALERT_SUCCESS,

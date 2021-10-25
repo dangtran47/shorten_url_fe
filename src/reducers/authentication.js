@@ -1,4 +1,4 @@
-import { SIGN_IN_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_FAILED } from '../actions';
+import { SIGN_IN_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_FAILED, SIGN_OUT } from '../actions';
 
 let token = JSON.parse(localStorage.getItem('token'));
 
@@ -25,6 +25,13 @@ const authenticationReducer = (state = initialState, action) => {
       };
     case SIGN_IN_FAILED:
       return { loggingIn: false };
+    case SIGN_OUT:
+      localStorage.removeItem('token')
+      return {
+        ...state,
+        loggedIn: false,
+        token: '',
+      }
     default:
       return state;
   }

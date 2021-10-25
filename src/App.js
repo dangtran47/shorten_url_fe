@@ -12,6 +12,7 @@ import GetLinkPage from "./pages/GetLinkPage";
 import LoginPage from "./pages/LoginPage";
 import { alertClear } from "./actions";
 import { history } from "./helper/history";
+import Header from './components/Header'
 
 function App({ message, error, alertClear }) {
   useEffect(() => {
@@ -32,6 +33,8 @@ function App({ message, error, alertClear }) {
 
   return (
     <Router history={history} forceRefresh={true}>
+      <Header />
+
       <Switch>
         <Route exact path="/">
           <HomePage />

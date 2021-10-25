@@ -5,6 +5,7 @@ import {
   FETCH_ORIGINAL_URL_FAILED,
   FETCH_ALL_URLS_SUCCESS,
   FETCH_ALL_URLS_FAILED,
+  SIGN_OUT,
 } from '../actions';
 
 const initialState = {
@@ -44,6 +45,8 @@ const urlReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
       };
+    case SIGN_OUT:
+      return {}
     default:
       return state;
   }
