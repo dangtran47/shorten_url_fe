@@ -5,6 +5,8 @@ import {
   FETCH_ORIGINAL_URL_FAILED,
   FETCH_ALL_URLS_SUCCESS,
   FETCH_ALL_URLS_FAILED,
+  SIGN_IN_REQUEST,
+  REGISTER_USER_REQUEST,
   SIGN_OUT,
 } from '../actions';
 
@@ -47,6 +49,8 @@ const urlReducer = (state = initialState, action) => {
         ...action.payload,
       };
     case SIGN_OUT:
+    case SIGN_IN_REQUEST:
+    case REGISTER_USER_REQUEST:
       return {};
     default:
       return state;

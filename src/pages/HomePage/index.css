@@ -44,13 +44,13 @@
 }
 
 .homepage .shorten-section .shorten-name-block .origin {
-  width: 30%;
+  width: 100%;
   line-height: 30px;
 }
 
 .homepage .shorten-section .shorten-name-block .shorten-name-input {
   height: 30px;
-  width: 64%;
+  width: 100%;
 }
 
 .homepage .shorten-section .shorten-button {

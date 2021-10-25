@@ -53,7 +53,7 @@ function App({ message, error, alertClear }) {
         </Route>
       </Switch>
 
-      <ToastContainer autoClose={2500} />
+      <ToastContainer autoClose={1700} />
     </Router>
   );
 }
