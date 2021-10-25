@@ -24,6 +24,7 @@ const urlReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
+        shortenUrl: '',
       };
     case FETCH_ORIGINAL_URL_SUCCESS:
       return {
@@ -46,7 +47,7 @@ const urlReducer = (state = initialState, action) => {
         ...action.payload,
       };
     case SIGN_OUT:
-      return {}
+      return {};
     default:
       return state;
   }
