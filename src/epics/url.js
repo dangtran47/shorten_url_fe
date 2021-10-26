@@ -18,7 +18,11 @@ import {
 import { merge, of } from 'rxjs';
 
 const errorHandler = (err) => ({
-  error: get(err.xhr.response, 'errors.message'),
+  error: get(
+    err.xhr.response,
+    'errors.message',
+    'Please wait to make a new request.'
+  ),
 });
 
 const createShortenUrlEpic = (action) =>
